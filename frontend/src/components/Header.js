@@ -2,12 +2,22 @@ import React from "react";
 import { AppBar, Toolbar, Typography, IconButton, Box, Container, Badge, Button } from "@mui/material";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import HomeIcon from '@mui/icons-material/Home';
-import { Link, useLocation } from "react-router-dom";
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 
 const Header = () => {
   const { cartCount } = useCart();
+  const { user, logout } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
   
   return (
     <AppBar 
@@ -27,7 +37,7 @@ const Header = () => {
             <Typography 
               variant="h6" 
               component={Link} 
-              to="/"
+              to={user?.role === 'admin' ? '/admin' : '/'}
               sx={{ 
                 color: 'text.primary', 
                 textDecoration: 'none',
@@ -47,55 +57,85 @@ const Header = () => {
           </Box>
 
           <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-            {location.pathname !== '/' && (
+            {user ? (
+              <>
+                {user.role === 'admin' ? (
+                  // Admin Navigation
+                  <Button
+                    component={Link}
+                    to="/admin"
+                    startIcon={<DashboardIcon />}
+                    variant={location.pathname === '/admin' ? 'contained' : 'outlined'}
+                    color="primary"
+                  >
+                    Dashboard
+                  </Button>
+                ) : (
+                  // Customer Navigation
+                  <>
+                    {location.pathname !== '/' && (
+                      <Button
+                        component={Link}
+                        to="/"
+                        startIcon={<HomeIcon />}
+                        variant="outlined"
+                        color="primary"
+                      >
+                        Home
+                      </Button>
+                    )}
+                    
+                    <IconButton 
+                      color="primary"
+                      component={Link} 
+                      to="/checkout"
+                      size="large"
+                      sx={{
+                        transition: 'all 0.2s',
+                        bgcolor: location.pathname === '/checkout' ? 'primary.light' : 'primary.main',
+                        color: 'white',
+                        '&:hover': { 
+                          transform: 'scale(1.1)',
+                          bgcolor: 'primary.dark',
+                        }
+                      }}
+                    >
+                      <Badge 
+                        badgeContent={cartCount} 
+                        color="secondary"
+                        sx={{
+                          '& .MuiBadge-badge': {
+                            fontSize: '0.75rem',
+                            height: '20px',
+                            minWidth: '20px',
+                            fontWeight: 'bold'
+                          }
+                        }}
+                      >
+                        <ShoppingCartIcon />
+                      </Badge>
+                    </IconButton>
+                  </>
+                )}
+                <Button
+                  onClick={handleLogout}
+                  startIcon={<LogoutIcon />}
+                  variant="outlined"
+                  color="primary"
+                >
+                  Logout
+                </Button>
+              </>
+            ) : (
               <Button
                 component={Link}
-                to="/"
-                startIcon={<HomeIcon />}
-                variant="outlined"
+                to="/login"
+                variant="contained"
                 color="primary"
-                sx={{ 
-                  fontWeight: 500,
-                  '&:hover': { 
-                    bgcolor: 'primary.light',
-                    color: 'white'
-                  }
-                }}
               >
-                Home
+                Login
               </Button>
             )}
-            
-            <IconButton 
-              color="primary"
-              component={Link} 
-              to="/checkout"
-              size="large"
-              sx={{
-                transition: 'all 0.2s',
-                bgcolor: location.pathname === '/checkout' ? 'primary.light' : 'primary.main',
-                color: 'white',
-                '&:hover': { 
-                  transform: 'scale(1.1)',
-                  bgcolor: 'primary.dark',
-                }
-              }}
-            >
-              <Badge 
-                badgeContent={cartCount} 
-                color="secondary"
-                sx={{
-                  '& .MuiBadge-badge': {
-                    fontSize: '0.75rem',
-                    height: '20px',
-                    minWidth: '20px',
-                    fontWeight: 'bold'
-                  }
-                }}
-              >
-                <ShoppingCartIcon />
-              </Badge>
-            </IconButton>
           </Box>
         </Toolbar>
       </Container>
