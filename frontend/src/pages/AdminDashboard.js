@@ -26,13 +26,47 @@ import TotalSalesAnalysis from '../components/admin/TotalSalesAnalysis';
 import AverageDailySalesAnalysis from '../components/admin/AverageDailySalesAnalysis';
 import { generateMonthlyData, formatCurrency } from '../utils/adminUtils';
 
-// Mock initial products data
+// Mock initial products data based on actual backend products
 const mockProducts = [
-  { id: 1, name: 'Apple', stock: 50, price: 0.5, sold: 150 },
-  { id: 2, name: 'Banana', stock: 75, price: 0.3, sold: 200 },
-  { id: 3, name: 'Orange', stock: 30, price: 0.6, sold: 120 },
-  { id: 4, name: 'Milk', stock: 25, price: 2.5, sold: 80 },
-  { id: 5, name: 'Bread', stock: 15, price: 1.5, sold: 90 },
+  // Complan Products
+  { id: 1, name: "Complan Classic Creme", category: "Complan", stock: 32, price: 290, sold: 78 },
+  { id: 2, name: "Complan Kesar Badam", category: "Complan", stock: 28, price: 310, sold: 65 },
+  { id: 3, name: "Complan Nutrigro Badam Kheer", category: "Complan", stock: 15, price: 325, sold: 42 },
+  { id: 4, name: "Complan Pista Badam", category: "Complan", stock: 22, price: 310, sold: 56 },
+  { id: 5, name: "Complan Royal Chocolate", category: "Complan", stock: 30, price: 290, sold: 81 },
+  
+  // Dermi Cool Products
+  { id: 6, name: "Dermi Cool", category: "Personal Care", stock: 80, price: 55, sold: 120 },
+  
+  // Everyuth Products
+  { id: 7, name: "EY AAAM TULSI TURMERIC FACEWASH50G", category: "Facewash", stock: 45, price: 85, sold: 93 },
+  { id: 8, name: "EY ADVANCED GOLDEN GLOW PEEL OFF M- 50G", category: "Skincare", stock: 38, price: 145, sold: 62 },
+  { id: 9, name: "EY NATURALS NEEM FACE WASH AY 50G", category: "Facewash", stock: 52, price: 85, sold: 104 },
+  
+  // Gatsby Products
+  { id: 10, name: "Gatsby Deo Shield", category: "Personal Care", stock: 42, price: 199, sold: 76 },
+  
+  // Glucon-D Products
+  { id: 11, name: "Glucon D Nimbu Pani 1-KG", category: "Beverages", stock: 35, price: 210, sold: 89 },
+  { id: 12, name: "Glucon D Regular 1-KG", category: "Beverages", stock: 48, price: 195, sold: 115 },
+  { id: 13, name: "Glucon D Regular 2-KG", category: "Beverages", stock: 25, price: 380, sold: 53 },
+  { id: 14, name: "Glucon D Tangy orange 1-KG", category: "Beverages", stock: 32, price: 210, sold: 78 },
+  
+  // Lux Products
+  { id: 15, name: "Lux Purple", category: "Personal Care", stock: 95, price: 45, sold: 142 },
+  
+  // Nutralite Products
+  { id: 16, name: "Nutralite ACHARI MAYO 300g-275g-25g-", category: "Condiments", stock: 28, price: 135, sold: 65 },
+  { id: 17, name: "Nutralite CHEESY GARLIC MAYO 300g-275g-25g-", category: "Condiments", stock: 35, price: 145, sold: 83 },
+  { id: 18, name: "Nutralite DOODHSHAKTHI PURE GHEE 1L", category: "Dairy", stock: 18, price: 599, sold: 32 },
+  
+  // Nycil Products
+  { id: 19, name: "Nycil Prickly Heat Powder", category: "Personal Care", stock: 50, price: 85, sold: 98 },
+  
+  // Sugar Free Products
+  { id: 20, name: "SUGAR FREE GOLD 500 PELLET", category: "Sweeteners", stock: 22, price: 295, sold: 45 },
+  { id: 21, name: "SUGAR FREE NATURA 500 PELLET", category: "Sweeteners", stock: 26, price: 275, sold: 58 },
+  { id: 22, name: "SUGARLITE POUCH 500G", category: "Sweeteners", stock: 40, price: 155, sold: 72 }
 ];
 
 const StatCard = ({ icon, title, value, color, onClick }) => (

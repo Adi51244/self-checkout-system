@@ -32,6 +32,7 @@ const Home = () => {
   const [showWebcam, setShowWebcam] = useState(false);
   const [realTimeMode, setRealTimeMode] = useState(false);
   const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
+  const [noProductsDetected, setNoProductsDetected] = useState(false);
   const fileInputRef = useRef(null);
   const webcamRef = useRef(null);
   const detectionIntervalRef = useRef(null);
@@ -52,13 +53,24 @@ const Home = () => {
   const handleDetect = async (imageBlob) => {
     if (!imageBlob) return;
     setLoading(true);
+    setNoProductsDetected(false); // Reset the no products flag
     const formData = new FormData();
     formData.append("file", imageBlob);
 
     try {
       const result = await detectProducts(formData);
-      if (result) {
-        setProducts(result.bill.items);
+      if (result && result.bill && result.bill.items) {
+        if (result.bill.items.length > 0) {
+          setProducts(result.bill.items);
+        } else {
+          // No products were detected in the image
+          setProducts([]);
+          setNoProductsDetected(true);
+        }
+      } else {
+        // Invalid response format
+        setProducts([]);
+        setNoProductsDetected(true);
       }
     } catch (error) {
       setSnackbar({
@@ -66,6 +78,8 @@ const Home = () => {
         message: 'Error detecting products. Please try again.',
         severity: 'error'
       });
+      setProducts([]);
+      setNoProductsDetected(false);
     }
     setLoading(false);
   };
@@ -113,6 +127,7 @@ const Home = () => {
       severity: 'success'
     });
     setProducts([]);
+    setNoProductsDetected(false);
     setImage(null);
     setPreview(null);
   };
@@ -301,11 +316,28 @@ const Home = () => {
             
             {products.length === 0 ? (
               <Box sx={{ textAlign: 'center', py: 8, color: 'text.secondary' }}>
-                <Typography>
-                  {showWebcam && realTimeMode 
-                    ? 'Point your camera at products to detect them'
-                    : 'Upload an image to detect products'}
-                </Typography>
+                {noProductsDetected ? (
+                  <Box>
+                    <Typography variant="h6" color="warning.main" gutterBottom>
+                      No Products Detected
+                    </Typography>
+                    <Typography>
+                      We couldn't identify any products in the image. Please try:
+                    </Typography>
+                    <Box component="ul" sx={{ textAlign: 'left', display: 'inline-block', mt: 2 }}>
+                      <Typography component="li">Ensuring the product is clearly visible</Typography>
+                      <Typography component="li">Good lighting conditions</Typography>
+                      <Typography component="li">Placing the product against a simple background</Typography>
+                      <Typography component="li">Using a supported product from our inventory</Typography>
+                    </Box>
+                  </Box>
+                ) : (
+                  <Typography>
+                    {showWebcam && realTimeMode 
+                      ? 'Point your camera at products to detect them'
+                      : 'Upload an image to detect products'}
+                  </Typography>
+                )}
               </Box>
             ) : (
               <Fade in>

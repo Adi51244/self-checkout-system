@@ -39,6 +39,11 @@ const SalesAnalysis = ({ open, onClose, monthlyData = [] }) => {
         .slice(0, 5)
         .map(product => ({
           name: product.name,
+          id: product.id,
+          sku: product.sku || '',
+          category: product.category || 'Uncategorized',
+          price: product.price,
+          description: product.description || '',
           value: product.sold
         }))
     : [];
@@ -121,13 +126,38 @@ const SalesAnalysis = ({ open, onClose, monthlyData = [] }) => {
                       outerRadius={80}
                       paddingAngle={5}
                       dataKey="value"
-                      label={({name, value}) => `${name} (${value})`}
+                      label={({name, value}) => `${name.substring(0, 12)}${name.length > 12 ? '...' : ''} (${value})`}
                     >
                       {topProducts.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                       ))}
                     </Pie>
-                    <Tooltip />
+                    <Tooltip 
+                      formatter={(value, name, props) => {
+                        const product = topProducts.find(p => p.name === name);
+                        return [
+                          <div>
+                            <div style={{marginBottom: '4px'}}><strong>Quantity Sold: {value}</strong></div>
+                            {product && product.sku && <div style={{fontSize: '12px'}}>SKU: {product.sku}</div>}
+                            {product && product.category && <div style={{fontSize: '12px'}}>Category: {product.category}</div>}
+                            {product && product.price && <div style={{fontSize: '12px'}}>Unit Price: {formatCurrency(product.price)}</div>}
+                            {product && product.description && (
+                              <div style={{fontSize: '12px', maxWidth: '200px'}}>
+                                Description: {product.description.length > 30 ? `${product.description.substring(0, 30)}...` : product.description}
+                              </div>
+                            )}
+                          </div>,
+                          product ? product.name : name
+                        ];
+                      }}
+                      contentStyle={{ 
+                        borderRadius: 8,
+                        border: 'none',
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                        padding: '10px 14px',
+                        fontSize: '14px'
+                      }}
+                    />
                     <Legend />
                   </PieChart>
                 </ResponsiveContainer>

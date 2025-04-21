@@ -34,33 +34,32 @@ import { formatCurrency } from '../../utils/adminUtils';
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'];
 
 const ItemsSoldAnalysis = ({ open, onClose, monthlyData = [] }) => {
-  const currentMonth = monthlyData[monthlyData.length - 1] || { products: [] };
-  const hasData = monthlyData.length > 0;
+  // Check if monthlyData exists and has length
+  const hasData = monthlyData && monthlyData.length > 0;
+  
+  // Use safe fallback for currentMonth
+  const currentMonth = hasData ? monthlyData[monthlyData.length - 1] : { products: [] };
 
   // Calculate product quantity data for current month
-  const productQuantityData = currentMonth.products
-    ? [...currentMonth.products]
-        .sort((a, b) => b.sold - a.sold)
-        .map(product => ({
-          name: product.name,
-          sold: product.sold,
-          stock: product.stock,
-          price: product.price
-        }))
-        .filter(product => product.sold > 0)
-    : [];
+  const productQuantityData = (currentMonth.products || [])
+    .map(product => ({
+      name: product.name || 'Unknown Product',
+      sold: product.sold || 0,
+      stock: product.stock || 0,
+      price: product.price || 0
+    }))
+    .filter(product => product.sold > 0)
+    .sort((a, b) => b.sold - a.sold);
 
   // Prepare data for category-wise sales pie chart
   const uniqueCategories = {};
-  if (currentMonth.products) {
-    currentMonth.products.forEach(product => {
-      const category = product.category || 'Other';
-      if (!uniqueCategories[category]) {
-        uniqueCategories[category] = 0;
-      }
-      uniqueCategories[category] += product.sold;
-    });
-  }
+  (currentMonth.products || []).forEach(product => {
+    const category = product.category || 'Other';
+    if (!uniqueCategories[category]) {
+      uniqueCategories[category] = 0;
+    }
+    uniqueCategories[category] += product.sold || 0;
+  });
   
   const categoryData = Object.keys(uniqueCategories).map(category => ({
     name: category,
@@ -76,8 +75,8 @@ const ItemsSoldAnalysis = ({ open, onClose, monthlyData = [] }) => {
     
     if (!current || !previous) return { growth: 0, percentage: '0%' };
     
-    const currentSales = current.products.reduce((sum, p) => sum + p.sold, 0);
-    const previousSales = previous.products.reduce((sum, p) => sum + p.sold, 0);
+    const currentSales = (current.products || []).reduce((sum, p) => sum + (p.sold || 0), 0);
+    const previousSales = (previous.products || []).reduce((sum, p) => sum + (p.sold || 0), 0);
     
     if (previousSales === 0) return { growth: currentSales, percentage: '100%' };
     
@@ -130,56 +129,43 @@ const ItemsSoldAnalysis = ({ open, onClose, monthlyData = [] }) => {
     <Dialog
       open={open}
       onClose={onClose}
-      maxWidth="xl"
+      maxWidth="lg"
       fullWidth
       PaperProps={{
         sx: {
-          minHeight: '85vh',
           maxHeight: '90vh',
-          minWidth: '98vw'
+          width: '95vw',
+          overflowY: 'auto'
         }
       }}
     >
       <DialogTitle>
         <Box display="flex" justifyContent="space-between" alignItems="center">
-          <Typography variant="h5" sx={{ fontWeight: 600 }}>
-            Items Sold Analysis
-          </Typography>
+          <Typography variant="h5" sx={{ fontWeight: 600 }}>Items Sold Analysis</Typography>
           <IconButton onClick={onClose} size="small">
             <CloseIcon />
           </IconButton>
         </Box>
       </DialogTitle>
-      <DialogContent sx={{ pb: 4 }}>
-        <Grid container spacing={3}>
+      <DialogContent>
+        <Grid container spacing={3} direction="column">
           <Grid item xs={12}>
-            <Paper 
-              elevation={0}
-              sx={{ 
-                p: 3, 
-                height: 450,
-                display: 'flex',
-                flexDirection: 'column',
-                borderRadius: 2
-              }}
-            >
-              <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-                Items Sold by Product
-                {growthData.growth !== 0 && (
-                  <Typography 
-                    component="span" 
-                    sx={{ 
-                      ml: 2, 
-                      color: growthData.growth > 0 ? 'success.main' : 'error.main',
-                      fontSize: '0.9rem'
-                    }}
-                  >
-                    {growthData.growth > 0 ? '▲' : '▼'} {growthData.percentage} from last month
-                  </Typography>
-                )}
-              </Typography>
+            <Paper elevation={0} sx={{ p: 3, height: 500 }}>
+              <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>Items Sold by Product</Typography>
+              {growthData.growth !== 0 && (
+                <Typography 
+                  component="span" 
+                  sx={{ 
+                    ml: 2, 
+                    color: growthData.growth > 0 ? 'success.main' : 'error.main',
+                    fontSize: '0.9rem'
+                  }}
+                >
+                  {growthData.growth > 0 ? '▲' : '▼'} {growthData.percentage} from last month
+                </Typography>
+              )}
               {hasData && productQuantityData.length > 0 ? (
-                <Box sx={{ flex: 1, width: '100%', mt: 1 }}>
+                <Box sx={{ flex: 1, width: '100%', height: '90%', mt: 1 }}>
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart
                       data={productQuantityData.slice(0, 15)} // Show top 15 products
@@ -201,29 +187,81 @@ const ItemsSoldAnalysis = ({ open, onClose, monthlyData = [] }) => {
                   </ResponsiveContainer>
                 </Box>
               ) : (
-                <Box sx={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Box sx={{ height: '90%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Typography color="text.secondary">No product sales data available</Typography>
                 </Box>
               )}
             </Paper>
           </Grid>
 
-          <Grid item xs={12} md={6}>
-            <Paper 
-              elevation={0} 
-              sx={{ 
-                p: 3, 
-                height: 400,
-                display: 'flex',
-                flexDirection: 'column',
-                borderRadius: 2
-              }}
-            >
-              <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-                Sales by Category
-              </Typography>
+          <Grid item xs={12}>
+            <Paper elevation={0} sx={{ p: 3 }}>
+              <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>Top Selling Products</Typography>
+              {productQuantityData.length > 0 ? (
+                <TableContainer sx={{ maxHeight: 400, overflow: 'auto' }}>
+                  <Table stickyHeader size="small">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell sx={{ fontWeight: 600, fontSize: '14px' }}>Rank</TableCell>
+                        <TableCell sx={{ fontWeight: 600, fontSize: '14px' }}>Product</TableCell>
+                        <TableCell align="right" sx={{ fontWeight: 600, fontSize: '14px' }}>Units Sold</TableCell>
+                        <TableCell align="right" sx={{ fontWeight: 600, fontSize: '14px' }}>Stock</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {productQuantityData.slice(0, 10).map((product, index) => (
+                        <TableRow 
+                          key={product.name}
+                          sx={{ 
+                            bgcolor: index < 3 ? `${COLORS[index]}10` : 'inherit',
+                            '&:hover': {
+                              bgcolor: index < 3 ? `${COLORS[index]}20` : 'rgba(0,0,0,0.04)'
+                            }
+                          }}
+                        >
+                          <TableCell>
+                            <Typography 
+                              component="span" 
+                              sx={{ 
+                                color: index < 3 ? COLORS[index] : 'text.primary',
+                                fontWeight: index < 3 ? 600 : 400,
+                                fontSize: '14px'
+                              }}
+                            >
+                              #{index + 1}
+                            </Typography>
+                          </TableCell>
+                          <TableCell sx={{ fontSize: '14px' }}>{product.name}</TableCell>
+                          <TableCell align="right" sx={{ fontSize: '14px', fontWeight: index < 3 ? 600 : 400 }}>
+                            {product.sold}
+                          </TableCell>
+                          <TableCell 
+                            align="right" 
+                            sx={{ 
+                              fontSize: '14px', 
+                              color: product.stock < product.sold * 0.5 ? 'error.main' : 'inherit'
+                            }}
+                          >
+                            {product.stock}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              ) : (
+                <Box sx={{ height: 200, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Typography color="text.secondary">No product sales data available</Typography>
+                </Box>
+              )}
+            </Paper>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Paper elevation={0} sx={{ p: 3, height: 500 }}>
+              <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>Sales by Category</Typography>
               {hasData && categoryData.length > 0 ? (
-                <Box sx={{ flex: 1, width: '100%', height: '100%' }}>
+                <Box sx={{ flex: 1, width: '100%', height: '90%' }}>
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                       <Pie
@@ -250,73 +288,6 @@ const ItemsSoldAnalysis = ({ open, onClose, monthlyData = [] }) => {
                   <Typography color="text.secondary">No category data available</Typography>
                 </Box>
               )}
-            </Paper>
-          </Grid>
-
-          <Grid item xs={12} md={6}>
-            <Paper 
-              elevation={0} 
-              sx={{ 
-                height: 400,
-                display: 'flex',
-                flexDirection: 'column',
-                borderRadius: 2
-              }}
-            >
-              <Typography variant="h6" sx={{ p: 3, pb: 2, fontWeight: 600 }}>
-                Top Selling Products
-              </Typography>
-              <TableContainer sx={{ flex: 1 }}>
-                <Table stickyHeader size="small">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell sx={{ fontWeight: 600, fontSize: '14px' }}>Rank</TableCell>
-                      <TableCell sx={{ fontWeight: 600, fontSize: '14px' }}>Product</TableCell>
-                      <TableCell align="right" sx={{ fontWeight: 600, fontSize: '14px' }}>Units Sold</TableCell>
-                      <TableCell align="right" sx={{ fontWeight: 600, fontSize: '14px' }}>Stock</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {productQuantityData.slice(0, 10).map((product, index) => (
-                      <TableRow 
-                        key={product.name}
-                        sx={{ 
-                          bgcolor: index < 3 ? `${COLORS[index]}10` : 'inherit',
-                          '&:hover': {
-                            bgcolor: index < 3 ? `${COLORS[index]}20` : 'rgba(0,0,0,0.04)'
-                          }
-                        }}
-                      >
-                        <TableCell>
-                          <Typography 
-                            component="span" 
-                            sx={{ 
-                              color: index < 3 ? COLORS[index] : 'text.primary',
-                              fontWeight: index < 3 ? 600 : 400,
-                              fontSize: '14px'
-                            }}
-                          >
-                            #{index + 1}
-                          </Typography>
-                        </TableCell>
-                        <TableCell sx={{ fontSize: '14px' }}>{product.name}</TableCell>
-                        <TableCell align="right" sx={{ fontSize: '14px', fontWeight: index < 3 ? 600 : 400 }}>
-                          {product.sold}
-                        </TableCell>
-                        <TableCell 
-                          align="right" 
-                          sx={{ 
-                            fontSize: '14px', 
-                            color: product.stock < product.sold * 0.5 ? 'error.main' : 'inherit'
-                          }}
-                        >
-                          {product.stock}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
             </Paper>
           </Grid>
         </Grid>

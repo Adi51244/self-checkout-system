@@ -49,9 +49,29 @@ const LoginPage = () => {
             borderRadius: 4,
           }}
         >
-          <Typography variant="h4" gutterBottom align="center" sx={{ fontWeight: 600, mb: 4 }}>
-            Welcome to VyapaarAI
-          </Typography>
+          <Box 
+            sx={{ 
+              display: 'flex', 
+              flexDirection: 'column', 
+              alignItems: 'center',
+              mb: 4 
+            }}
+          >
+            <img 
+              src="/images/VyapaarAi.png" 
+              alt="VyapaarAI Logo" 
+              style={{ 
+                maxWidth: '180px', 
+                marginBottom: '16px'
+              }} 
+            />
+            <Typography variant="h4" gutterBottom align="center" sx={{ fontWeight: 600 }}>
+              Welcome to VyapaarAI
+            </Typography>
+            <Typography variant="body1" color="text.secondary" align="center">
+              Your AI-Powered Self-Checkout Solution
+            </Typography>
+          </Box>
           
           {error && (
             <Alert severity="error" sx={{ mb: 3 }}>

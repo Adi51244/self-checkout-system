@@ -38,37 +38,43 @@ import { formatCurrency } from '../../utils/adminUtils';
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8'];
 
 const TotalSalesAnalysis = ({ open, onClose, monthlyData = [] }) => {
-  const currentMonth = monthlyData[monthlyData.length - 1] || { products: [] };
-  const hasData = monthlyData.length > 0;
-
-  // Calculate product sales ranking
-  const productSalesData = currentMonth.products
-    ? [...currentMonth.products]
-        .sort((a, b) => (b.sold * b.price) - (a.sold * a.price))
-        .map(product => ({
-          name: product.name,
-          revenue: product.sold * product.price,
-          quantity: product.sold
-        }))
-    : [];
+  // Check if monthlyData exists and has length
+  const hasData = monthlyData && monthlyData.length > 0;
+  
+  // Use optional chaining to safely access data
+  const currentMonth = hasData ? monthlyData[monthlyData.length - 1] : { products: [] };
+  
+  // Ensure products is always an array and handle missing properties gracefully
+  const productSalesData = (currentMonth.products || []).map(product => ({
+    name: product.name || 'Unknown Product',
+    id: product.id || '',
+    sku: product.sku || '',
+    category: product.category || 'Uncategorized',
+    price: product.price || 0,
+    description: product.description || '',
+    // Use product.revenue directly if it exists, otherwise calculate it
+    revenue: product.revenue || (product.sold * product.price) || 0,
+    quantity: product.sold || 0
+  })).sort((a, b) => b.revenue - a.revenue);
 
   // Calculate trend data
-  const trendData = monthlyData.map(month => ({
+  const trendData = hasData ? monthlyData.map(month => ({
     month: month.month,
-    totalRevenue: month.products.reduce((sum, p) => sum + (p.sold * p.price), 0),
-  }));
+    // Use the month.revenue directly if it exists, otherwise calculate it
+    totalRevenue: month.revenue || (month.products || []).reduce((sum, p) => sum + (p.revenue || (p.sold * p.price) || 0), 0),
+  })) : [];
 
   return (
     <Dialog
       open={open}
       onClose={onClose}
-      maxWidth="xl"
+      maxWidth="lg"
       fullWidth
       PaperProps={{
         sx: {
-          minHeight: '85vh',
           maxHeight: '90vh',
-          minWidth: '98vw'  // Increased from 95vw to 98vw for maximum space
+          width: '95vw',
+          overflowY: 'auto'
         }
       }}
     >
@@ -82,24 +88,15 @@ const TotalSalesAnalysis = ({ open, onClose, monthlyData = [] }) => {
           </IconButton>
         </Box>
       </DialogTitle>
-      <DialogContent sx={{ pb: 4 }}>
-        <Grid container spacing={3}>
+      <DialogContent>
+        <Grid container spacing={3} direction="column">
           <Grid item xs={12}>
-            <Paper 
-              elevation={0} 
-              sx={{ 
-                p: 3, 
-                height: 450,
-                display: 'flex',
-                flexDirection: 'column',
-                mx: -1  // Negative margin to maximize width
-              }}
-            >
+            <Paper elevation={0} sx={{ p: 3, height: 500 }}>
               <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                 Revenue Trend Analysis
               </Typography>
-              {hasData ? (
-                <Box sx={{ flex: 1, width: '100%' }}>
+              {hasData && trendData.length > 0 ? (
+                <Box sx={{ flex: 1, width: '100%', height: '90%' }}>
                   <ResponsiveContainer width="100%" height="100%">
                     <AreaChart
                       data={trendData}
@@ -156,25 +153,19 @@ const TotalSalesAnalysis = ({ open, onClose, monthlyData = [] }) => {
             </Paper>
           </Grid>
 
-          <Grid item xs={12} md={8}>  {/* Increased from md={7} to md={8} */}
-            <Paper 
-              elevation={0} 
-              sx={{ 
-                height: 450,
-                display: 'flex',
-                flexDirection: 'column',
-                mx: -1  // Negative margin to maximize width
-              }}
-            >
-              <Typography variant="h6" sx={{ p: 3, pb: 2, fontWeight: 600 }}>
+          <Grid item xs={12}>
+            <Paper elevation={0} sx={{ p: 3, height: 500 }}>
+              <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                 Best Performing Products
               </Typography>
-              <TableContainer sx={{ flex: 1 }}>
+              {productSalesData.length > 0 ? (
+              <TableContainer sx={{ maxHeight: 400, overflow: 'auto' }}>
                 <Table stickyHeader size="small">
                   <TableHead>
                     <TableRow>
                       <TableCell sx={{ fontWeight: 600, fontSize: '14px' }}>Rank</TableCell>
-                      <TableCell sx={{ fontWeight: 600, fontSize: '14px' }}>Product</TableCell>
+                      <TableCell sx={{ fontWeight: 600, fontSize: '14px' }}>Product Details</TableCell>
+                      <TableCell align="right" sx={{ fontWeight: 600, fontSize: '14px' }}>Price</TableCell>
                       <TableCell align="right" sx={{ fontWeight: 600, fontSize: '14px' }}>Units Sold</TableCell>
                       <TableCell align="right" sx={{ fontWeight: 600, fontSize: '14px' }}>Revenue</TableCell>
                     </TableRow>
@@ -202,7 +193,20 @@ const TotalSalesAnalysis = ({ open, onClose, monthlyData = [] }) => {
                             #{index + 1}
                           </Typography>
                         </TableCell>
-                        <TableCell sx={{ fontSize: '14px' }}>{product.name}</TableCell>
+                        <TableCell sx={{ fontSize: '14px' }}>
+                          <Box>
+                            <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>{product.name}</Typography>
+                            <Typography variant="caption" color="text.secondary" display="block">
+                              {product.sku && `SKU: ${product.sku} | `}Category: {product.category}
+                            </Typography>
+                            {product.description && (
+                              <Typography variant="caption" color="text.secondary" sx={{display: 'block', maxWidth: 250}} noWrap>
+                                {product.description.length > 40 ? `${product.description.substring(0, 40)}...` : product.description}
+                              </Typography>
+                            )}
+                          </Box>
+                        </TableCell>
+                        <TableCell align="right" sx={{ fontSize: '14px' }}>{formatCurrency(product.price)}</TableCell>
                         <TableCell align="right" sx={{ fontSize: '14px' }}>{product.quantity}</TableCell>
                         <TableCell align="right" sx={{ fontSize: '14px' }}>{formatCurrency(product.revenue)}</TableCell>
                       </TableRow>
@@ -210,25 +214,21 @@ const TotalSalesAnalysis = ({ open, onClose, monthlyData = [] }) => {
                   </TableBody>
                 </Table>
               </TableContainer>
+              ) : (
+                <Box sx={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Typography color="text.secondary">No product sales data available</Typography>
+                </Box>
+              )}
             </Paper>
           </Grid>
 
-          <Grid item xs={12} md={4}>  {/* Decreased from md={5} to md={4} to match the 8+4 grid */}
-            <Paper 
-              elevation={0} 
-              sx={{ 
-                p: 3, 
-                height: 450,
-                display: 'flex',
-                flexDirection: 'column',
-                mx: -1  // Negative margin to maximize width
-              }}
-            >
+          <Grid item xs={12}>
+            <Paper elevation={0} sx={{ p: 3, height: 500 }}>
               <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                 Revenue Distribution
               </Typography>
               {productSalesData.length > 0 ? (
-                <Box sx={{ flex: 1, width: '100%' }}>
+                <Box sx={{ flex: 1, width: '100%', height: '90%' }}>
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                       <Pie
@@ -254,7 +254,18 @@ const TotalSalesAnalysis = ({ open, onClose, monthlyData = [] }) => {
                         ))}
                       </Pie>
                       <Tooltip 
-                        formatter={(value, name) => [formatCurrency(value), name]}
+                        formatter={(value, name, props) => {
+                          const product = productSalesData.find(p => p.name === name);
+                          return [
+                            <div>
+                              <div style={{marginBottom: '4px'}}><strong>{formatCurrency(value)}</strong></div>
+                              {product && product.sku && <div style={{fontSize: '12px'}}>SKU: {product.sku}</div>}
+                              {product && product.category && <div style={{fontSize: '12px'}}>Category: {product.category}</div>}
+                              {product && product.price && <div style={{fontSize: '12px'}}>Unit Price: {formatCurrency(product.price)}</div>}
+                            </div>,
+                            product ? product.name : name
+                          ];
+                        }}
                         contentStyle={{ 
                           borderRadius: 8,
                           border: 'none',
@@ -277,7 +288,7 @@ const TotalSalesAnalysis = ({ open, onClose, monthlyData = [] }) => {
                   </ResponsiveContainer>
                 </Box>
               ) : (
-                <Box sx={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Box sx={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Typography color="text.secondary">No revenue distribution data available</Typography>
                 </Box>
               )}
