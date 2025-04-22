@@ -29,7 +29,12 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
 
 // Route wrapper to handle auth redirects
 const AppRoutes = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+  
+  // Add a loading state check to prevent redirect flicker during authentication
+  if (loading) {
+    return <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>Loading...</Box>;
+  }
 
   return (
     <Routes>

@@ -10,7 +10,7 @@ import uuid
 router = APIRouter()
 
 # Load your trained model
-model = YOLO("D:/Programs/self-checkout-system/backend/best.pt")
+model = YOLO("backend/best.pt")  # or just "best.pt" if it's in the same folder
 
 # Define product prices (in INR)
 PRODUCT_PRICES = {
