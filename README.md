@@ -1,5 +1,9 @@
 <p align="center">
+<<<<<<< HEAD
   <img src="assets/VyapaarAi.png" alt="VyapaarAI Logo" width="180"/>
+=======
+  <img src="assets/Vyapaar .png" alt="VyapaarAI Logo" width="180"/>
+>>>>>>> aa0477da09fa9c578a3a8f6b4805852302985032
 </p>
 
 # 🛒 VyapaarAI - Smart Self-Service Checkout System 🚀
