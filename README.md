@@ -22,6 +22,11 @@
   <img src="https://via.placeholder.com/700x300?text=Smart+Checkout+System" alt="Smart Checkout System" width="700"/>
 </p>
 
+<!-- Added demo GIF -->
+<p align="center">
+  <img src="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" alt="VyapaarAI Demo" width="500"/>
+</p>
+
 ---
 
 ## ✨ Features
@@ -33,6 +38,11 @@
   - 🎯 Enhanced accuracy with AI-powered product recognition.
   - 🧍‍♂️ Zero queues with multiple self-service stations.
   - 📱 Contactless and modern shopping experience.
+
+<!-- Added features GIF -->
+<p align="center">
+  <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="AI Features Demo" width="400"/>
+</p>
 
 ---
 
@@ -114,6 +124,11 @@ We welcome contributions! Please fork the repository and submit a pull request w
 
 <p align="center">
   <img src="https://via.placeholder.com/400x200?text=Roadmap+and+Future+Plans" alt="Roadmap" width="400"/>
+</p>
+
+<!-- Added roadmap GIF -->
+<p align="center">
+  <img src="https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif" alt="Future Plans" width="400"/>
 </p>
 
 ---
