@@ -22,7 +22,7 @@
 
 <!-- Added demo GIF -->
 <p align="center">
-  <img src="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" alt="VyapaarAI Demo" width="500"/>
+  <img src=" https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbndxdmhtMjdkbGQzcXc2dHo1YWhneDVvOG94enN5bm9tbzd5Y3AxdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GeimqsH0TLDt4tScGw/giphy.gif" alt="VyapaarAI Demo" width="500"/>
 </p>
 
 ---
@@ -72,6 +72,12 @@
 | 📏 Space Efficiency | Large checkout counters | Compact self-service stations | 🪄 Up to 60% less floor space required |
 
 ---
+<p align="center">
+  <img src=" https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExanI1Y2F1NG5ybm03Y21xZTJpdTNxbDh4dmcyaHc3azJ6YXcweTNkOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26ufdipQqU2lhNA4g/giphy.gif
+" alt="AI Features Demo" width="400"/>
+</p>
+
+
 
 ## 🛠️ Installation and Setup
 
