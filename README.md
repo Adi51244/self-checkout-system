@@ -18,13 +18,9 @@
 > **VyapaarAI** is revolutionizing the retail experience with its state-of-the-art smart self-service checkout system.  
 > By leveraging advanced artificial intelligence and computer vision technologies, VyapaarAI provides a seamless, fast, and intuitive shopping experience.
 
+<!-- Updated demo GIF -->
 <p align="center">
-  <img src="https://via.placeholder.com/700x300?text=Smart+Checkout+System" alt="Smart Checkout System" width="700"/>
-</p>
-
-<!-- Added demo GIF -->
-<p align="center">
-  <img src="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" alt="VyapaarAI Demo" width="500"/>
+  <img src="https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif" alt="VyapaarAI Demo" width="500"/>
 </p>
 
 ---
@@ -38,11 +34,6 @@
   - 🎯 Enhanced accuracy with AI-powered product recognition.
   - 🧍‍♂️ Zero queues with multiple self-service stations.
   - 📱 Contactless and modern shopping experience.
-
-<!-- Added features GIF -->
-<p align="center">
-  <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="AI Features Demo" width="400"/>
-</p>
 
 ---
 
@@ -73,13 +64,14 @@
 | 💻 Hardware Requirements | Expensive scanner systems, conveyor belts | Standard cameras and touchscreen interface | 🖥️ Lower hardware costs |
 | 📏 Space Efficiency | Large checkout counters | Compact self-service stations | 🪄 Up to 60% less floor space required |
 
+<!-- Added comparison GIF -->
+<p align="center">
+  <img src="https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif" alt="Comparison Demo" width="500"/>
+</p>
+
 ---
 
 ## 🛠️ Installation and Setup
-
-<p align="center">
-  <img src="https://via.placeholder.com/300x200?text=Setup+Process" alt="Setup Process" width="300"/>
-</p>
 
 1. **Clone the repository:**
    ```bash
@@ -107,10 +99,6 @@
 
 We welcome contributions! Please fork the repository and submit a pull request with your changes.
 
-<p align="center">
-  <img src="https://via.placeholder.com/300x200?text=Contribute+to+Project" alt="Contribute" width="300"/>
-</p>
-
 ---
 
 ## 🔜 Roadmap
@@ -122,13 +110,9 @@ We welcome contributions! Please fork the repository and submit a pull request w
 - 📊 Advanced analytics dashboard for retailers
 - 💳 Support for multiple payment methods including cryptocurrency
 
+<!-- Updated roadmap GIF -->
 <p align="center">
-  <img src="https://via.placeholder.com/400x200?text=Roadmap+and+Future+Plans" alt="Roadmap" width="400"/>
-</p>
-
-<!-- Added roadmap GIF -->
-<p align="center">
-  <img src="https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif" alt="Future Plans" width="400"/>
+  <img src="https://media.giphy.com/media/3o6Zt8zb1Pp2v3BzWc/giphy.gif" alt="Future Plans" width="400"/>
 </p>
 
 ---
@@ -136,7 +120,3 @@ We welcome contributions! Please fork the repository and submit a pull request w
 ## 📞 Contact
 
 For more information, visit our website or contact us at <a href="mailto:support@vyapaarai.com">support@vyapaarai.com</a>.
-
-<p align="center">
-  <img src="https://via.placeholder.com/300x200?text=Contact+Us" alt="Contact Us" width="300"/>
-</p>
