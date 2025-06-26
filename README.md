@@ -1,9 +1,5 @@
 <p align="center">
-<<<<<<< HEAD
   <img src="assets/VyapaarAi.png" alt="VyapaarAI Logo" width="180"/>
-=======
-  <img src="assets/Vyapaar .png" alt="VyapaarAI Logo" width="180"/>
->>>>>>> aa0477da09fa9c578a3a8f6b4805852302985032
 </p>
 
 # 🛒 VyapaarAI - Smart Self-Service Checkout System 🚀
@@ -20,7 +16,7 @@
 VyapaarAI is revolutionizing the retail experience with its state-of-the-art smart self-service checkout system. By leveraging advanced artificial intelligence and computer vision technologies, VyapaarAI provides a seamless, fast, and intuitive shopping experience.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/your-repo/self-checkout-system/main/assets/checkout-demo.gif" alt="Self-Checkout Demo" width="500"/>
+  <img src="https://via.placeholder.com/500x300?text=Self-Checkout+Demo" alt="Self-Checkout Demo" width="500"/>
 </p>
 
 ---
@@ -87,7 +83,7 @@ We are continuously enhancing our self-service technology and expanding our AI c
 ## 🛠️ Installation and Setup
 
 <p align="center">
-  <img src="https://cdn.pixabay.com/photo/2017/01/10/19/05/gear-1978270_1280.png" alt="Setup" width="120"/>
+  <img src="https://via.placeholder.com/300x200?text=Setup+Process" alt="Setup" width="300"/>
 </p>
 
 1. **Clone the repository:**
@@ -144,7 +140,7 @@ We are continuously enhancing our self-service technology and expanding our AI c
 We welcome contributions! Please fork the repository and submit a pull request with your changes.
 
 <p align="center">
-  <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/handshake-1296269_1280.png" alt="Contribute" width="120"/>
+  <img src="https://via.placeholder.com/300x200?text=Contribute+to+Project" alt="Contribute" width="300"/>
 </p>
 
 ---
@@ -171,5 +167,5 @@ For more information, visit our website or contact us at <a href="mailto:support
 - 💳 Support for multiple payment methods including cryptocurrency
 
 <p align="center">
-  <img src="https://cdn.pixabay.com/photo/2017/06/10/07/18/road-2384587_1280.jpg" alt="Roadmap" width="400"/>
+  <img src="https://via.placeholder.com/400x200?text=Roadmap+and+Future+Plans" alt="Roadmap" width="400"/>
 </p>
