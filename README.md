@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/Vyapaar.png" alt="VyapaarAI Logo" width="180"/>
+  <img src="assets/VyapaarAi.png" alt="VyapaarAI Logo" width="180"/>
 </p>
 
 # 🛒 VyapaarAI - Smart Self-Service Checkout System 🚀
@@ -83,7 +83,7 @@ We are continuously enhancing our self-service technology and expanding our AI c
 ## 🛠️ Installation and Setup
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/your-repo/self-checkout-system/main/assets/setup.png" alt="Setup" width="300"/>
+  <img src="https://cdn.pixabay.com/photo/2017/01/10/19/05/gear-1978270_1280.png" alt="Setup" width="120"/>
 </p>
 
 1. **Clone the repository:**
@@ -140,7 +140,7 @@ We are continuously enhancing our self-service technology and expanding our AI c
 We welcome contributions! Please fork the repository and submit a pull request with your changes.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/your-repo/self-checkout-system/main/assets/contribute.png" alt="Contribute" width="200"/>
+  <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/handshake-1296269_1280.png" alt="Contribute" width="120"/>
 </p>
 
 ---
@@ -167,5 +167,5 @@ For more information, visit our website or contact us at <a href="mailto:support
 - 💳 Support for multiple payment methods including cryptocurrency
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/your-repo/self-checkout-system/main/assets/roadmap.png" alt="Roadmap" width="400"/>
+  <img src="https://cdn.pixabay.com/photo/2017/06/10/07/18/road-2384587_1280.jpg" alt="Roadmap" width="400"/>
 </p>
