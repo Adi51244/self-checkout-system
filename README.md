@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/Vyapaar.png" alt="VyapaarAI Logo" width="180"/>
+  <img src="assets/Vyapaar .png" alt="VyapaarAI Logo" width="180"/>
 </p>
 
 # 🛒 VyapaarAI - Smart Self-Service Checkout System 🚀
