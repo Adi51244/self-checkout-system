@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/your-repo/self-checkout-system/main/assets/vyapaarai-logo.png" alt="VyapaarAI Logo" width="180"/>
+  <img src="assets/Vyapaar.png" alt="VyapaarAI Logo" width="180"/>
 </p>
 
 # 🛒 VyapaarAI - Smart Self-Service Checkout System 🚀
