@@ -13,10 +13,13 @@
 
 ---
 
-VyapaarAI is revolutionizing the retail experience with its state-of-the-art smart self-service checkout system. By leveraging advanced artificial intelligence and computer vision technologies, VyapaarAI provides a seamless, fast, and intuitive shopping experience.
+## 📖 Project Overview
+
+> **VyapaarAI** is revolutionizing the retail experience with its state-of-the-art smart self-service checkout system.  
+> By leveraging advanced artificial intelligence and computer vision technologies, VyapaarAI provides a seamless, fast, and intuitive shopping experience.
 
 <p align="center">
-  <img src="https://via.placeholder.com/500x300?text=Self-Checkout+Demo" alt="Self-Checkout Demo" width="500"/>
+  <img src="https://via.placeholder.com/700x300?text=Smart+Checkout+System" alt="Smart Checkout System" width="700"/>
 </p>
 
 ---
@@ -33,19 +36,19 @@ VyapaarAI is revolutionizing the retail experience with its state-of-the-art sma
 
 ---
 
-## 🎯 Mission
+## 🏗️ System Architecture
 
-VyapaarAI aims to transform the way people shop by combining artificial intelligence with intuitive self-checkout solutions. Our mission is to make shopping faster, smarter, and more convenient than ever before.
+### 🖥️ Frontend
+- **Framework**: React with Material-UI
+- **State Management**: Redux Toolkit
+- **Styling**: Material-UI with custom theming
+- **API Integration**: Axios with request interceptors
 
----
-
-## 🔮 Future Vision
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/your-repo/self-checkout-system/main/assets/future-vision.png" alt="Future Vision" width="400"/>
-</p>
-
-We are continuously enhancing our self-service technology and expanding our AI capabilities. Our vision is to make VyapaarAI the gold standard for automated retail checkout systems, bringing the future of shopping to stores worldwide.
+### 🖧 Backend
+- **Framework**: Node.js with Express.js
+- **Database**: MongoDB
+- **Authentication**: JWT with refresh tokens
+- **API Documentation**: Swagger (OpenAPI)
 
 ---
 
@@ -62,28 +65,10 @@ We are continuously enhancing our self-service technology and expanding our AI c
 
 ---
 
-## 💡 Why VyapaarAI?
-
-### 🚩 Problems with Traditional Checkout Systems:
-- 😫 Long waiting times during peak hours
-- 🔍 Manual barcode scanning is time-consuming and error-prone
-- 👨‍💼 High labor costs for retailers
-- 📉 Customer dissatisfaction with checkout experience
-- 🦠 Concerns with person-to-person contact (especially post-pandemic)
-
-### 🛠️ VyapaarAI Solutions:
-- 🚀 Automated recognition eliminates manual scanning
-- 🤖 AI-powered systems adapt and learn over time
-- 📱 Digital-first approach aligns with modern consumer expectations
-- 📊 Data analytics provide valuable insights into purchasing patterns
-- ♻️ Sustainability through paperless receipts and efficient operations
-
----
-
 ## 🛠️ Installation and Setup
 
 <p align="center">
-  <img src="https://via.placeholder.com/300x200?text=Setup+Process" alt="Setup" width="300"/>
+  <img src="https://via.placeholder.com/300x200?text=Setup+Process" alt="Setup Process" width="300"/>
 </p>
 
 1. **Clone the repository:**
@@ -108,33 +93,6 @@ We are continuously enhancing our self-service technology and expanding our AI c
 
 ---
 
-## 💻 Technologies Used
-
-### Frontend
-- **⚛️ React**: A JavaScript library for building user interfaces. It allows us to create reusable UI components and manage the state of the application efficiently.
-- **🎨 Material-UI**: A popular React UI framework that provides pre-designed components and styling solutions, ensuring a modern and responsive design.
-
-### Backend
-- **🟢 Node.js**: A JavaScript runtime built on Chrome's V8 engine, used for building scalable and efficient server-side applications.
-- **⚡ Express.js**: A minimal and flexible Node.js web application framework that provides a robust set of features for building APIs and web applications.
-
-### AI/ML
-- **👁️ Computer Vision**: Used for intelligent product recognition by analyzing images captured by cameras to identify products without barcodes.
-- **🧠 Machine Learning**: Powers the AI algorithms that enable accurate product detection and seamless self-checkout experiences.
-
-### Database
-- **🍃 MongoDB**: A NoSQL database used for storing product data, user information, and transaction records in a flexible and scalable manner.
-
-### DevOps
-- **🐳 Docker**: Used for containerizing the application, ensuring consistency across development, testing, and production environments.
-- **🔄 GitHub Actions**: Automates CI/CD pipelines for testing, building, and deploying the application.
-
-### Other Tools
-- **📦 Webpack**: A module bundler for JavaScript applications, used to optimize and bundle the frontend code.
-- **🔄 Babel**: A JavaScript compiler that allows us to use the latest JavaScript features while maintaining compatibility with older browsers.
-
----
-
 ## 🤝 Contributing
 
 We welcome contributions! Please fork the repository and submit a pull request with your changes.
@@ -142,18 +100,6 @@ We welcome contributions! Please fork the repository and submit a pull request w
 <p align="center">
   <img src="https://via.placeholder.com/300x200?text=Contribute+to+Project" alt="Contribute" width="300"/>
 </p>
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
----
-
-## 📞 Contact
-
-For more information, visit our website or contact us at <a href="mailto:support@vyapaarai.com">support@vyapaarai.com</a>.
 
 ---
 
@@ -168,4 +114,14 @@ For more information, visit our website or contact us at <a href="mailto:support
 
 <p align="center">
   <img src="https://via.placeholder.com/400x200?text=Roadmap+and+Future+Plans" alt="Roadmap" width="400"/>
+</p>
+
+---
+
+## 📞 Contact
+
+For more information, visit our website or contact us at <a href="mailto:support@vyapaarai.com">support@vyapaarai.com</a>.
+
+<p align="center">
+  <img src="https://via.placeholder.com/300x200?text=Contact+Us" alt="Contact Us" width="300"/>
 </p>
