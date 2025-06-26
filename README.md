@@ -18,11 +18,19 @@
 > **VyapaarAI** is revolutionizing the retail experience with its state-of-the-art smart self-service checkout system.  
 > By leveraging advanced artificial intelligence and computer vision technologies, VyapaarAI provides a seamless, fast, and intuitive shopping experience.
 
+<<<<<<< HEAD
 <!-- Updated demo GIF -->
 <p align="center">
   <img src="https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif" alt="VyapaarAI Demo" width="500"/>
-</p>
+=======
+ 
 
+<!-- Added demo GIF -->
+<p align="center">
+  <img src=" https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbndxdmhtMjdkbGQzcXc2dHo1YWhneDVvOG94enN5bm9tbzd5Y3AxdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GeimqsH0TLDt4tScGw/giphy.gif" alt="VyapaarAI Demo" width="500"/>
+>>>>>>> ddda1a559f074dae6c17ea4297388fa858778bc6
+</p>
+<iframe src="https://giphy.com/embed/GeimqsH0TLDt4tScGw" width="480" height="322" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/vibes-vibing-vibin-GeimqsH0TLDt4tScGw">via GIPHY</a></p>
 ---
 
 ## ✨ Features
@@ -70,9 +78,20 @@
 </p>
 
 ---
+<p align="center">
+  <img src=" https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExanI1Y2F1NG5ybm03Y21xZTJpdTNxbDh4dmcyaHc3azJ6YXcweTNkOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26ufdipQqU2lhNA4g/giphy.gif
+" alt="AI Features Demo" width="400"/>
+</p>
+
+
 
 ## 🛠️ Installation and Setup
 
+<<<<<<< HEAD
+=======
+ 
+
+>>>>>>> ddda1a559f074dae6c17ea4297388fa858778bc6
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/your-repo/self-checkout-system.git
@@ -99,6 +118,11 @@
 
 We welcome contributions! Please fork the repository and submit a pull request with your changes.
 
+<<<<<<< HEAD
+=======
+ 
+
+>>>>>>> ddda1a559f074dae6c17ea4297388fa858778bc6
 ---
 
 ## 🔜 Roadmap
@@ -110,9 +134,17 @@ We welcome contributions! Please fork the repository and submit a pull request w
 - 📊 Advanced analytics dashboard for retailers
 - 💳 Support for multiple payment methods including cryptocurrency
 
+<<<<<<< HEAD
 <!-- Updated roadmap GIF -->
 <p align="center">
   <img src="https://media.giphy.com/media/3o6Zt8zb1Pp2v3BzWc/giphy.gif" alt="Future Plans" width="400"/>
+=======
+ 
+
+<!-- Added roadmap GIF -->
+<p align="center">
+  <img src="https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif" alt="Future Plans" width="400"/>
+>>>>>>> ddda1a559f074dae6c17ea4297388fa858778bc6
 </p>
 
 ---
