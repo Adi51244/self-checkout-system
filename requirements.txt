@@ -1,8 +1,0 @@
-# Backend dependencies
-fastapi
-uvicorn
-pydantic
-
-# Frontend dependencies
-react
-react-dom
